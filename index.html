@@ -3,27 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dear Audio</title>
-    <style>
-        /* スタイルをここに追加 */
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        .audio-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-    </style>
+    <title>ダウンロードボタン</title>
 </head>
 <body>
-    <div class="audio-container">
-        <h1>Dear Audio</h1>
-        <audio controls>
-            <source src="dear.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </div>
+    <h1>名称未設定.FCStdをダウンロード</h1>
+    <button id="downloadBtn">ダウンロード</button>
+
+    <script>
+        // ダウンロードボタンの動作
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            // ダウンロードするデータ（ここでは空のファイルを生成）
+            const data = "";
+            const blob = new Blob([data], { type: "application/octet-stream" });
+
+            // ダウンロードリンクを作成
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "名称未設定.FCStd";
+
+            // リンクをクリックしてダウンロード
+            link.click();
+
+            // メモリを解放
+            URL.revokeObjectURL(link.href);
+        });
+    </script>
 </body>
 </html>
